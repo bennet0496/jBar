@@ -4,11 +4,11 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface InstallableDrinkRepository extends CrudRepository<InstallableDrinkRepository, Long> {
-    Iterable<InstallableDrinkRepository> findAll();
+public interface InstallableDrinkRepository extends CrudRepository<InstallableDrink, Long> {
+    Iterable<InstallableDrink> findAll();
 
-    Iterable<InstallableDrinkRepository> findAllByName(String name);
+    Iterable<InstallableDrink> findAllByName(String name);
 
-    Iterable<InstallableDrinkRepository> findAllByType(DrinkType type);
+    Iterable<InstallableDrink> findAllByType(DrinkType type);
     
 }
