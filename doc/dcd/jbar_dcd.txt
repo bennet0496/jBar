@@ -1,0 +1,35 @@
+@startuml
+class Cocktail {
+    name: String
+    image: File
+    ingredients: Ingredient[]
+
+    serve(): void
+}
+Cocktail *- Ingredient
+class Ingredient {
+    name: String
+    amount: Int
+    type: DrinkType
+
+    getDrinks(): InstallableDrink[]
+}
+
+class DrinkType {
+    name: String
+}
+
+class InstallableDrink {
+    name: String
+    type: DrinkType
+
+    serve(): void
+}
+Ingredient *- DrinkType
+InstallableDrink *- DrinkType
+class Slot {
+    position: String
+    installedDrink: InstallableDrink
+}
+Slot *- InstallableDrink
+@enduml
