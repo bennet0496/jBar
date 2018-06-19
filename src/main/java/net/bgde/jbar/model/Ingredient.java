@@ -13,9 +13,9 @@ public class Ingredient {
     private int  amount;
     private DrinkType type;
 
-    public InstallableDrink(String name, int amount, DrinkType type){
+    public Ingredient(String name, int amount, DrinkType type) {
         this.name = name;
-        this.amount = amoount;
+        this.amount = amount;
         this.type = type;
     }
 
