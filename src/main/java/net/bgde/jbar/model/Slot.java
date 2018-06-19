@@ -9,19 +9,19 @@ public class Slot {
     @Id
     @GeneratedValue
     private Long id;
-    private Sting positon;
+    private String positon;
     private InstallableDrink InstalledDrink;
 
-    public Slot(Sting positon, InstallableDrink installedDrink) {
+    public Slot(String positon, InstallableDrink installedDrink) {
         this.positon = positon;
         InstalledDrink = installedDrink;
     }
 
-    public Sting getPositon() {
+    public String getPositon() {
         return positon;
     }
 
-    public void setPositon(Sting positon) {
+    public void setPositon(String positon) {
         this.positon = positon;
     }
 

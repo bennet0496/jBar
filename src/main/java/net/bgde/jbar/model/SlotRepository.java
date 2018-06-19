@@ -5,10 +5,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SlotRepository extends CrudRepository<Slot, Long>{
-    Interable<Slot> findAll();
+    Iterable<Slot> findAll();
 
-    Interable<Slot> findAllByPositon(String positon);
+    Iterable<Slot> findAllByPositon(String positon);
 
-    Interable<Slot> findAllByInstalledDrink(InstallableDrink InstalledDrink);
+    Iterable<Slot> findAllByInstalledDrink(InstallableDrink InstalledDrink);
 
 }
