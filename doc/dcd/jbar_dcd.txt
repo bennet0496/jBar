@@ -1,35 +1,46 @@
 @startuml
+
 class Cocktail {
     name: String
     image: File
-    ingredients: Ingredient[]
+    ingredients: Drink[]
 
     serve(): void
+    isAvailable(): boolean
 }
-Cocktail *- Ingredient
-class Ingredient {
+
+note right of Cocktail::isAvailable
+<U+2200>i<U+2208>Ingredients.
+  (type(i)<U+2248>ConcreteDrink <U+2227> 
+    <U+2203>s<U+2208>Slots.(s.installedDrink<U+2248>i)) <U+2228>
+  (type(i)<U+2248>GenericDrink <U+2227> 
+    <U+2203>c<U+2208>ConcreteDrinks.((c.type<U+2248>i) <U+2227> 
+      <U+2203>s<U+2082><U+2208>Slots.(s<U+2082>.installedDrink<U+2248>c))
+end note
+
+Cocktail *--> "1..n" Drink
+
+abstract class Drink {
     name: String
-    amount: Int
-    type: DrinkType
-
-    getDrinks(): InstallableDrink[]
 }
 
-class DrinkType {
-    name: String
+Drink <|- ConcreteDrink
+
+class ConcreteDrink {
+    type: GenericDrink
+    serve(amount: int): void
 }
 
-class InstallableDrink {
-    name: String
-    type: DrinkType
+ConcreteDrink "1..n" *-- "1" GenericDrink
 
-    serve(): void
+Drink <|- GenericDrink
+class GenericDrink {
+    getConcreteDrinks(): ConcreteDrink[]
 }
-Ingredient *- DrinkType
-InstallableDrink *- DrinkType
+
 class Slot {
     position: String
-    installedDrink: InstallableDrink
+    installedDrink: ConcreteDrink
 }
-Slot *- InstallableDrink
+Slot "0..1" *-- "1" ConcreteDrink
 @enduml
