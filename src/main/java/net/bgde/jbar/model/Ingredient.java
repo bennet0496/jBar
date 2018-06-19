@@ -10,12 +10,10 @@ public class Ingredient {
     @GeneratedValue
     private Long id;
     private String name;
-    private int  amount;
     private DrinkType type;
 
-    public Ingredient(String name, int amount, DrinkType type) {
+    public Ingredient(String name, DrinkType type) {
         this.name = name;
-        this.amount = amount;
         this.type = type;
     }
 
@@ -29,14 +27,6 @@ public class Ingredient {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
     }
 
     public void setType(DrinkType type) {
