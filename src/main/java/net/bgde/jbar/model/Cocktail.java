@@ -2,6 +2,7 @@ package net.bgde.jbar.model;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.Map;
 
 public class Cocktail {
     @Id
