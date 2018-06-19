@@ -34,4 +34,12 @@ public class Cocktail {
     public void setPath(String path) {
         this.path = path;
     }
+
+    public Map<Ingredient, Integer> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(Map<Ingredient, Integer> ingredients) {
+        this.ingredients = ingredients;
+    }
 }

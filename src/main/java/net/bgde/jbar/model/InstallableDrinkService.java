@@ -31,4 +31,7 @@ public class InstallableDrinkService {
         return Streams.stream(installableDrinkRepository.findAll());
     }
 
+    public Stream<InstallableDrink> findAllByType(DrinkType type){
+        return Streams.stream(installableDrinkRepository.findAllByType(type));
+    }
 }
