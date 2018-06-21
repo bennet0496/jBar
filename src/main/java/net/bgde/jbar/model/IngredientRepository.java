@@ -9,5 +9,5 @@ public interface IngredientRepository extends CrudRepository<Ingredient, Long>{
 
     Iterable<Ingredient> findAllByName(String name);
 
-    Iterable<Ingredient> findAllByType(DrinkType type);
+    Iterable<Ingredient> findAllByType(GenericIngredient type);
 }

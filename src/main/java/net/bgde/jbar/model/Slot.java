@@ -10,9 +10,9 @@ public class Slot {
     @GeneratedValue
     private Long id;
     private String positon;
-    private InstallableDrink InstalledDrink;
+    private ConcreteIngredient InstalledDrink;
 
-    public Slot(String positon, InstallableDrink installedDrink) {
+    public Slot(String positon, ConcreteIngredient installedDrink) {
         this.positon = positon;
         InstalledDrink = installedDrink;
     }
@@ -25,11 +25,11 @@ public class Slot {
         this.positon = positon;
     }
 
-    public InstallableDrink getInstalledDrink() {
+    public ConcreteIngredient getInstalledDrink() {
         return InstalledDrink;
     }
 
-    public void setInstalledDrink(InstallableDrink installedDrink) {
+    public void setInstalledDrink(ConcreteIngredient installedDrink) {
         InstalledDrink = installedDrink;
     }
 }

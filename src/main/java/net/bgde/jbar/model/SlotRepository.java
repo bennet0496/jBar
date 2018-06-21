@@ -9,6 +9,6 @@ public interface SlotRepository extends CrudRepository<Slot, Long>{
 
     Iterable<Slot> findAllByPositon(String positon);
 
-    Iterable<Slot> findAllByInstalledDrink(InstallableDrink InstalledDrink);
+    Iterable<Slot> findAllByInstalledDrink(ConcreteIngredient InstalledDrink);
 
 }

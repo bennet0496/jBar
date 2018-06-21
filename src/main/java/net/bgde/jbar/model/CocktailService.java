@@ -11,13 +11,11 @@ import java.util.stream.Stream;
 public class CocktailService {
     private final CocktailRepository cocktailRepository;
     private final IngredientService ingredientService;
-    private final InstallableDrinkService installableDrinkService;
     private final SlotRepository slotRepository;
 
-    public CocktailService(CocktailRepository cocktailRepository, IngredientService ingredientService, InstallableDrinkService installableDrinkService, SlotRepository slotRepository) {
+    public CocktailService(CocktailRepository cocktailRepository, IngredientService ingredientService, SlotRepository slotRepository) {
         this.cocktailRepository = cocktailRepository;
         this.ingredientService = ingredientService;
-        this.installableDrinkService = installableDrinkService;
         this.slotRepository = slotRepository;
     }
 

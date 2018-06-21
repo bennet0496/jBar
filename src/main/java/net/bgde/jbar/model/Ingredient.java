@@ -5,20 +5,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Ingredient {
+public abstract class Ingredient {
     @Id
     @GeneratedValue
-    private Long id;
-    private String name;
-    private DrinkType type;
+    protected Long id;
 
-    public Ingredient(String name, DrinkType type) {
+    protected String name;
+
+    public Ingredient(String name) {
         this.name = name;
-        this.type = type;
-    }
-
-    public DrinkType getType() {
-        return type;
     }
 
     public String getName() {
@@ -27,9 +22,5 @@ public class Ingredient {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setType(DrinkType type) {
-        this.type = type;
     }
 }
