@@ -13,9 +13,9 @@ public class Cocktail {
     private Long id;
     private String name;
     private String path;
-    private Map<InstallableDrink, Integer> ingredients;
+    private Map<Ingredient, Integer> ingredients;
 
-    public Cocktail(String name, String path, Map<InstallableDrink, Integer> ingredients) {
+    public Cocktail(String name, String path, Map<Ingredient, Integer> ingredients) {
         this.name = name;
         this.path = path;
         this.ingredients = ingredients;
@@ -37,11 +37,11 @@ public class Cocktail {
         this.path = path;
     }
 
-    public Map<InstallableDrink, Integer> getIngredients() {
+    public Map<Ingredient, Integer> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(Map<InstallableDrink, Integer> ingredients) {
+    public void setIngredients(Map<Ingredient, Integer> ingredients) {
         this.ingredients = ingredients;
     }
 }
