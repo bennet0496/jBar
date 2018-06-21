@@ -1,13 +1,16 @@
 package net.bgde.jbar.model;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.List;
 
+@Entity
 public class InstallableDrink {
     @Id @GeneratedValue
     private Long id;
     private String name;
-    private DrinkType type;
+    private List<DrinkType> type;
 
     public InstallableDrink(String name, DrinkType type){
         this.name = name;
