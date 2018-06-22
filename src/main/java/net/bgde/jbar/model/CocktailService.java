@@ -19,18 +19,50 @@ public class CocktailService {
         this.slotRepository = slotRepository;
     }
 
+    /**
+     * Retrieve all saved Cocktails as Stream
+     * @return all Cocktails
+     */
     public Stream<Cocktail> findAll(){
         return Streams.stream(cocktailRepository.findAll());
     }
 
+    /**
+     * Search for a Cocktail by it's name
+     * @param name Name of the Cocktail
+     * @return Matching Cocktails
+     */
     public Stream<Cocktail> findByName(String name){
         return Streams.stream(cocktailRepository.findByName(name));
     }
 
     public boolean isCocktailAvailable(Cocktail cocktail){
-        /*cocktail.getIngredients().keySet().stream().allMatch(ingredient ->
-            ingredientService.getDrinks()
-        )*/
-        return false;
+        return cocktail.getIngredients().keySet().stream().allMatch(ingredient ->
+                (
+                        ingredient instanceof ConcreteIngredient &&
+                        Streams.stream(slotRepository.findAll()).anyMatch(slot -> slot.getInstalledDrink().equals(ingredient))
+                ) || (
+                        ingredient instanceof GenericIngredient &&
+                                ingredientService.findAllConcreteIngredients().anyMatch(concreteIngredient ->
+                                        concreteIngredient.getType().stream().anyMatch(genericIngredient ->
+                                                genericIngredient.equals(ingredient)) &&
+                                        Streams.stream(slotRepository.findAll()).anyMatch(slot -> slot.getInstalledDrink().equals(concreteIngredient))
+                                )
+                )
+        );
+    }
+
+    public Cocktail serveCocktail(Cocktail cocktail){
+        if(isCocktailAvailable(cocktail)) {
+            //TODO: implement Serial Communication
+            System.out.println("HELO API CONNECTOR");
+            cocktail.getIngredients().forEach((i, a) ->
+                    slotRepository.findByInstalledDrink(ingredientService.mapToConcreteIngredient(i)).serve(a)
+            );
+            System.out.println("DONE");
+            return cocktail;
+        } else {
+            return null;
+        }
     }
 }

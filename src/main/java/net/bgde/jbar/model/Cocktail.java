@@ -1,19 +1,28 @@
 package net.bgde.jbar.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Map;
 
 @Entity
 public class Cocktail {
     @Id
     @GeneratedValue
-
     private Long id;
     private String name;
     private String path;
+
+    @ManyToMany
+    @JoinTable(
+            name = "CocktailIngredient",
+            joinColumns = {@JoinColumn(name = "ingredient_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "cocktail_id", referencedColumnName = "id")}
+    )
+    @MapKeyJoinColumn(name = "id")
     private Map<Ingredient, Integer> ingredients;
+
+    @Deprecated
+    private Cocktail() {
+    }
 
     public Cocktail(String name, String path, Map<Ingredient, Integer> ingredients) {
         this.name = name;

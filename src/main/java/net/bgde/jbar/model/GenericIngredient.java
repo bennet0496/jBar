@@ -8,4 +8,8 @@ public class GenericIngredient extends Ingredient {
     public GenericIngredient(String name){
         super(name);
     }
+
+    @Deprecated
+    private GenericIngredient() {
+    }
 }

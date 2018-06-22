@@ -12,6 +12,11 @@ public class ConcreteIngredient extends Ingredient {
     @ManyToMany
     private List<GenericIngredient> type;
 
+    @Deprecated
+    private ConcreteIngredient() {
+        super();
+    }
+
     public ConcreteIngredient(String name, List<GenericIngredient> type){
         super(name);
         this.type = type;

@@ -1,5 +1,6 @@
 package net.bgde.jbar.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,6 +12,10 @@ public abstract class Ingredient {
     protected Long id;
 
     protected String name;
+
+    @Deprecated
+    protected Ingredient() {
+    }
 
     public Ingredient(String name) {
         this.name = name;

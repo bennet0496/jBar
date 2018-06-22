@@ -3,6 +3,7 @@ package net.bgde.jbar.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Slot {
@@ -10,11 +11,12 @@ public class Slot {
     @GeneratedValue
     private Long id;
     private String positon;
-    private ConcreteIngredient InstalledDrink;
+    @OneToOne
+    private ConcreteIngredient installedDrink;
 
     public Slot(String positon, ConcreteIngredient installedDrink) {
         this.positon = positon;
-        InstalledDrink = installedDrink;
+        this.installedDrink = installedDrink;
     }
 
     public String getPositon() {
@@ -26,10 +28,16 @@ public class Slot {
     }
 
     public ConcreteIngredient getInstalledDrink() {
-        return InstalledDrink;
+        return installedDrink;
     }
 
     public void setInstalledDrink(ConcreteIngredient installedDrink) {
-        InstalledDrink = installedDrink;
+        this.installedDrink = installedDrink;
+    }
+
+    public void serve(Integer a) {
+        //TODO: Implement Serial Communication
+        System.out.print(String.format("SERVE %s", positon));
+        System.out.print(String.format("UNITS %d", a));
     }
 }
