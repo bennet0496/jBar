@@ -14,6 +14,9 @@ public class Slot {
     @OneToOne
     private ConcreteIngredient installedDrink;
 
+    @Deprecated
+    private Slot(){}
+
     public Slot(String positon, ConcreteIngredient installedDrink) {
         this.positon = positon;
         this.installedDrink = installedDrink;

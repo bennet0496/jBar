@@ -33,7 +33,7 @@ public class CocktailService {
      * @return Matching Cocktails
      */
     public Stream<Cocktail> findByName(String name){
-        return Streams.stream(cocktailRepository.findByName(name));
+        return Streams.stream(cocktailRepository.findAllByNameContains(name));
     }
 
     public boolean isCocktailAvailable(Cocktail cocktail){

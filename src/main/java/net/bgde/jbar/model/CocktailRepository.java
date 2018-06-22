@@ -7,7 +7,7 @@ import java.util.Optional;
 
 @Repository
 public interface CocktailRepository extends CrudRepository<Cocktail, Long> {
-    Iterable<Cocktail> findAllByNameIgnoreCaseContains(String name);
+    Iterable<Cocktail> findAllByNameContains(String name);
 
     @Override
     <S extends Cocktail> S save(S entity);
