@@ -24,7 +24,7 @@ public class CocktailInitializizer implements DataInitializer {
 
     @Override
     public void initialize() {
-       /* GenericIngredient typ1 = genericIngredientRepository.save(new GenericIngredient("Rum"));
+        GenericIngredient typ1 = genericIngredientRepository.save(new GenericIngredient("Rum"));
         GenericIngredient typ2 = genericIngredientRepository.save(new GenericIngredient("Cola"));
 
         LinkedList<GenericIngredient> typ1List = new LinkedList<>();
@@ -36,13 +36,25 @@ public class CocktailInitializizer implements DataInitializer {
         ConcreteIngredient zutat1 = concreteIngredientRepository.save(new ConcreteIngredient("Havanna", typ1List));
         ConcreteIngredient zutat2 = concreteIngredientRepository.save(new ConcreteIngredient("Coca Cola", typ2List));
 
+        //Havanna
         CocktailIngredient czutat1 = cocktailIngredientRepository.save(new CocktailIngredient(zutat1, 3));
+        //Coca Cola
         CocktailIngredient czutat2 = cocktailIngredientRepository.save(new CocktailIngredient(zutat2, 25));
+
+        //Rum
+        CocktailIngredient czutat3 = cocktailIngredientRepository.save(new CocktailIngredient(typ1, 4));
+        //Coca Cola
+        CocktailIngredient czutat4 = cocktailIngredientRepository.save(new CocktailIngredient(typ2, 25));
 
         LinkedList<CocktailIngredient> cocktailIngredients = new LinkedList<>();
         cocktailIngredients.add(czutat1);
         cocktailIngredients.add(czutat2);
+
+        LinkedList<CocktailIngredient> cocktailIngredients1 = new LinkedList<>();
+        cocktailIngredients1.add(czutat3);
+        cocktailIngredients1.add(czutat4);
+
         cocktailRepository.save(new Cocktail("Cuba Libre", "/dev/null",cocktailIngredients));
-        */
+        cocktailRepository.save(new Cocktail("Rucola", "/dev/null",cocktailIngredients1));
     }
 }

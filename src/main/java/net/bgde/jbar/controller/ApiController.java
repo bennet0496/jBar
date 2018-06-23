@@ -26,34 +26,6 @@ public class ApiController {
 
     @GetMapping(value = "/api/cocktails", produces = "application/json")
     public List<Cocktail> getCocktails() {
-        if(cocktailService.findAll().count() < 1) {
-            GenericIngredient typ1 = genericIngredientRepository.save(new GenericIngredient("Rum"));
-            GenericIngredient typ2 = genericIngredientRepository.save(new GenericIngredient("Cola"));
-
-            LinkedList<GenericIngredient> typ1List = new LinkedList<>();
-            typ1List.add(typ1);
-
-            LinkedList<GenericIngredient> typ2List = new LinkedList<>();
-            typ2List.add(typ2);
-
-            ConcreteIngredient zutat1 = concreteIngredientRepository.save(new ConcreteIngredient("Havanna", typ1List));
-            ConcreteIngredient zutat2 = concreteIngredientRepository.save(new ConcreteIngredient("Coca Cola", typ2List));
-
-            CocktailIngredient czutat1 = cocktailIngredientRepository.save(new CocktailIngredient(zutat1, 3));
-            CocktailIngredient czutat2 = cocktailIngredientRepository.save(new CocktailIngredient(zutat2, 25));
-            CocktailIngredient czutat3 = cocktailIngredientRepository.save(new CocktailIngredient(typ1, 4));
-
-            LinkedList<CocktailIngredient> cocktailIngredients = new LinkedList<>();
-            cocktailIngredients.add(czutat1);
-            cocktailIngredients.add(czutat2);
-
-            LinkedList<CocktailIngredient> cocktailIngredients1 = new LinkedList<>();
-            cocktailIngredients1.add(czutat2);
-            cocktailIngredients1.add(czutat3);
-
-            cocktailRepository.save(new Cocktail("Cuba Libre", "/dev/null",cocktailIngredients));
-            cocktailRepository.save(new Cocktail("Rucola", "/dev/null",cocktailIngredients1));
-        }
         return cocktailService.findAll().collect(Collectors.toList());
     }
 }
