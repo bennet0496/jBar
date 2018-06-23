@@ -1,6 +1,7 @@
 package net.bgde.jbar.model;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Map;
 
 @Entity
@@ -11,20 +12,14 @@ public class Cocktail {
     private String name;
     private String path;
 
-    @ManyToMany
-    @JoinTable(
-            name = "CocktailIngredient",
-            joinColumns = {@JoinColumn(name = "ingredient_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "cocktail_id", referencedColumnName = "id")}
-    )
-    @MapKeyJoinColumn(name = "id")
-    private Map<Ingredient, Integer> ingredients;
+    @OneToMany
+    private List<CocktailIngredient> ingredients;
 
     @Deprecated
     private Cocktail() {
     }
 
-    public Cocktail(String name, String path, Map<Ingredient, Integer> ingredients) {
+    public Cocktail(String name, String path, List<CocktailIngredient> ingredients) {
         this.name = name;
         this.path = path;
         this.ingredients = ingredients;
@@ -46,11 +41,11 @@ public class Cocktail {
         this.path = path;
     }
 
-    public Map<Ingredient, Integer> getIngredients() {
+    public List<CocktailIngredient> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(Map<Ingredient, Integer> ingredients) {
+    public void setIngredients(List<CocktailIngredient> ingredients) {
         this.ingredients = ingredients;
     }
 }

@@ -1,0 +1,17 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--/*@thymesVar id="cocktails" type="java.util.List<net.bgde.jbar.model.Cocktail>"*/-->
+<ul th:each="cocktail : ${cocktails}">
+    <li th:text="${cocktail.name}">
+        <ul th:each="ingredient : ${cocktail.ingredients}">
+            <li th:text="${ingredient.ingredient.name}"></li>
+        </ul>
+    </li>
+</ul>
+</body>
+</html>

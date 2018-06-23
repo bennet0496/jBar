@@ -37,15 +37,15 @@ public class CocktailService {
     }
 
     public boolean isCocktailAvailable(Cocktail cocktail){
-        return cocktail.getIngredients().keySet().stream().allMatch(ingredient ->
+        return cocktail.getIngredients().stream().allMatch(ingredient ->
                 (
-                        ingredient instanceof ConcreteIngredient &&
-                        Streams.stream(slotRepository.findAll()).anyMatch(slot -> slot.getInstalledDrink().equals(ingredient))
+                        ingredient.getIngredient() instanceof ConcreteIngredient &&
+                        Streams.stream(slotRepository.findAll()).anyMatch(slot -> slot.getInstalledDrink().equals(ingredient.getIngredient()))
                 ) || (
-                        ingredient instanceof GenericIngredient &&
+                        ingredient.getIngredient() instanceof GenericIngredient &&
                                 ingredientService.findAllConcreteIngredients().anyMatch(concreteIngredient ->
                                         concreteIngredient.getType().stream().anyMatch(genericIngredient ->
-                                                genericIngredient.equals(ingredient)) &&
+                                                genericIngredient.equals(ingredient.getIngredient())) &&
                                         Streams.stream(slotRepository.findAll()).anyMatch(slot -> slot.getInstalledDrink().equals(concreteIngredient))
                                 )
                 )
@@ -56,8 +56,10 @@ public class CocktailService {
         if(isCocktailAvailable(cocktail)) {
             //TODO: implement Serial Communication
             System.out.println("HELO API CONNECTOR");
-            cocktail.getIngredients().forEach((i, a) ->
-                    slotRepository.findByInstalledDrink(ingredientService.mapToConcreteIngredient(i)).serve(a)
+            cocktail.getIngredients().forEach(cocktailIngredient ->
+                    slotRepository.findByInstalledDrink(
+                            ingredientService.mapToConcreteIngredient(cocktailIngredient.getIngredient()))
+                            .serve(cocktailIngredient.getAmount())
             );
             System.out.println("DONE");
             return cocktail;
