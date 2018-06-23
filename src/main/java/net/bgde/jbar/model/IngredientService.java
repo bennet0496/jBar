@@ -1,11 +1,13 @@
 package net.bgde.jbar.model;
 
 import com.google.common.collect.Streams;
+import jdk.nashorn.internal.objects.NativeArray;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 @Service
@@ -52,5 +54,21 @@ public class IngredientService {
         } else {
             return Streams.stream(concreteIngredientRepository.findAllByType((GenericIngredient)ingredient)).findAny().orElse(null);
         }
+    }
+
+    public Optional<Ingredient> findOne(Long id) {
+        return ingredientRepository.findById(id);
+    }
+
+    public Optional<ConcreteIngredient> findConcreteOne(Long id) {
+        return concreteIngredientRepository.findById(id);
+    }
+
+    public ConcreteIngredient saveConcrete(ConcreteIngredient concreteIngredient) {
+        return concreteIngredientRepository.save(concreteIngredient);
+    }
+
+    public GenericIngredient saveGeneric(GenericIngredient genericIngredient) {
+        return genericIngredientRepository.save(genericIngredient);
     }
 }

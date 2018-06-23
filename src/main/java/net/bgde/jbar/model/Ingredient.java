@@ -13,12 +13,18 @@ public abstract class Ingredient {
 
     protected String name;
 
+
+
     @Deprecated
     protected Ingredient() {
     }
 
     public Ingredient(String name) {
         this.name = name;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {

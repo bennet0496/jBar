@@ -33,8 +33,8 @@ public class CocktailInitializizer implements DataInitializer {
         LinkedList<GenericIngredient> typ2List = new LinkedList<>();
         typ2List.add(typ2);
 
-        ConcreteIngredient zutat1 = concreteIngredientRepository.save(new ConcreteIngredient("Havanna", typ1List));
-        ConcreteIngredient zutat2 = concreteIngredientRepository.save(new ConcreteIngredient("Coca Cola", typ2List));
+        ConcreteIngredient zutat1 = concreteIngredientRepository.save(new ConcreteIngredient("Havanna", typ1List, "/dev/null"));
+        ConcreteIngredient zutat2 = concreteIngredientRepository.save(new ConcreteIngredient("Coca Cola", typ2List, "/dev/null"));
 
         //Havanna
         CocktailIngredient czutat1 = cocktailIngredientRepository.save(new CocktailIngredient(zutat1, 3));

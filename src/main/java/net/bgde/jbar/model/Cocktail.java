@@ -25,6 +25,10 @@ public class Cocktail {
         this.ingredients = ingredients;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }

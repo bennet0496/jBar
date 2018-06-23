@@ -22,6 +22,10 @@ public class Slot {
         this.installedDrink = installedDrink;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public String getPositon() {
         return positon;
     }

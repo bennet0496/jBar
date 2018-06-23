@@ -4,6 +4,7 @@ import com.google.common.collect.Streams;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 @Service
@@ -66,5 +67,17 @@ public class CocktailService {
         } else {
             return null;
         }
+    }
+
+    public Optional<Cocktail> findOne(Long id) {
+        return cocktailRepository.findById(id);
+    }
+
+    public Cocktail save(Cocktail cocktail) {
+        return cocktailRepository.save(cocktail);
+    }
+
+    public void delete(Long id) {
+        cocktailRepository.deleteById(id);
     }
 }
