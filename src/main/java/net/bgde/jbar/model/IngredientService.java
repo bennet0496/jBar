@@ -1,7 +1,6 @@
 package net.bgde.jbar.model;
 
 import com.google.common.collect.Streams;
-import jdk.nashorn.internal.objects.NativeArray;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;

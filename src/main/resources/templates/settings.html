@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{/resources/style-light.css}" href="../static/style-light.css" />
 
-    <title>Bar Roboter - Cocktails</title>
+    <title>Bar Roboter - Settings</title>
 </head>
 <body>
 <nav class="navbar navbar-dark bg-dark">
@@ -62,15 +62,36 @@
                                 <div class="Settings">
                                     <div class="row">
                                         <div class="col-sm-3">
-                                            <h3 class="box-title">Drinktpys</h3>
+                                            <h3 class="box-title">Settings</h3>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h4 class="box-title">Slots</h4>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <ul class="Slots">
-                                                <li>Cuba Libre; kubanischer Rum + Cola</li>
-                                                <li>Wodka Cola; Wodka + Cola</li>
-                                                <li><a href="#">add a Cocktail</a> | <a href="config_cocktail.html">configure Cocktails</a> </li>
+                                                <li>One at A0 | <a href="#">delete</a> | <a href="#">edit</a></li>
+                                                <li>Two at A1 | <a href="#">delete</a> | <a href="#">edit</a></li>
+                                                <li>Three at S0 | <a href="#">delete</a> | <a href="#">edit</a></li>
+                                                <li><a href="#">add a Slot</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h4 class="box-title">Slotsposition & Timing</h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <ul class="Slots">
+                                                <li>A0 at X3500 Y1000 | <a href="#">edit</a></li>
+                                                <li>A1 at X4500 Y1000 | <a href="#">edit</a></li>
+                                                <li>S0 at X500 Y2000 | <a href="#">edit</a></li>
+                                                <li>500 ms per cl | <a href="#">edit</a></li>
                                             </ul>
                                         </div>
                                     </div>
