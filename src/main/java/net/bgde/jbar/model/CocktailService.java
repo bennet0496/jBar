@@ -1,10 +1,18 @@
 package net.bgde.jbar.model;
 
 import com.google.common.collect.Streams;
+import com.google.common.util.concurrent.SimpleTimeLimiter;
+import com.google.common.util.concurrent.TimeLimiter;
+import net.bgde.jbar.core.SerialPort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Optional;
+import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Stream;
 
 @Service
@@ -14,10 +22,13 @@ public class CocktailService {
     private final IngredientService ingredientService;
     private final SlotRepository slotRepository;
 
-    public CocktailService(CocktailRepository cocktailRepository, IngredientService ingredientService, SlotRepository slotRepository) {
+    private final SerialPort serialPort;
+
+    public CocktailService(CocktailRepository cocktailRepository, IngredientService ingredientService, SlotRepository slotRepository, SerialPort serialPort) {
         this.cocktailRepository = cocktailRepository;
         this.ingredientService = ingredientService;
         this.slotRepository = slotRepository;
+        this.serialPort = serialPort;
     }
 
     /**
@@ -53,16 +64,45 @@ public class CocktailService {
         );
     }
 
-    public Cocktail serveCocktail(Cocktail cocktail){
+    private void waitForString(String string){
+        long counter = 0;
+
+        try {
+            do {
+                try {
+                    Thread.sleep(1L);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                counter++;
+            } while (serialPort.in().readLine().equalsIgnoreCase(string) && counter < 1000);
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Communication Failed! Breaking Loop", e);
+        }
+    }
+
+    public Cocktail serveCocktail(Cocktail cocktail) throws Exception {
         if(isCocktailAvailable(cocktail)) {
-            //TODO: implement Serial Communication
-            System.out.println("HELO API CONNECTOR");
-            cocktail.getIngredients().forEach(cocktailIngredient ->
-                    slotRepository.findByInstalledDrink(
-                            ingredientService.mapToConcreteIngredient(cocktailIngredient.getIngredient()))
-                            .serve(cocktailIngredient.getAmount())
-            );
-            System.out.println("DONE");
+            if(!serialPort.connected())
+                serialPort.connect();
+
+            serialPort.out().println("HELO API CONNECTOR");
+            try {
+                cocktail.getIngredients().forEach(cocktailIngredient -> {
+                    Slot slot = slotRepository.findByInstalledDrink(
+                            ingredientService.mapToConcreteIngredient(cocktailIngredient.getIngredient()));
+
+                    serialPort.out().println(String.format("SERVE %s", slot.getPositon()));
+                    waitForString("250 - Ok");
+                    serialPort.out().println(String.format("UNITS %d", cocktailIngredient.getAmount()));
+                    waitForString("300 Queued");
+                    waitForString("251 done");
+                });
+            } catch (RuntimeException e){
+                throw new IOException("Communication with Robot failed!", e);
+            }
+            serialPort.out().println("QUIT");
             return cocktail;
         } else {
             return null;

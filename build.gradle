@@ -36,6 +36,7 @@ dependencies {
 	compile 'commons-codec:commons-codec:1.11'
 	compile 'com.google.guava:guava:23.4-jre'
 	compile 'commons-lang:commons-lang:2.5'
+	compile group: 'org.rxtx', name: 'rxtx', version: '2.1.7'
 
 	runtime('org.springframework.boot:spring-boot-devtools')
 	//runtime('org.postgresql:postgresql')

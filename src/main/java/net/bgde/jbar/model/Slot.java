@@ -41,10 +41,4 @@ public class Slot {
     public void setInstalledDrink(ConcreteIngredient installedDrink) {
         this.installedDrink = installedDrink;
     }
-
-    public void serve(Integer a) {
-        //TODO: Implement Serial Communication
-        System.out.print(String.format("SERVE %s", positon));
-        System.out.print(String.format("UNITS %d", a));
-    }
 }
