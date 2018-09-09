@@ -1,5 +1,6 @@
 package net.bgde.jbar.core.configuration;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -8,6 +9,7 @@ class ConfigurationEntry {
     @Id
     private String name;
 
+    @Embedded
     private Object value;
 
     @Deprecated
